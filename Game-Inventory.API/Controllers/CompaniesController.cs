@@ -9,7 +9,7 @@ namespace Game_Inventory.API.Controllers;
 public class CompaniesController : ControllerBase
 {
     [HttpGet]
-    [Route("/Companies")]
+    [Route("/companies")]
     [SwaggerOperation(Tags = ["Companies"])]
     public IActionResult GetCompanies()
     {
@@ -17,7 +17,7 @@ public class CompaniesController : ControllerBase
     }
 
     [HttpGet]
-    [Route("/Companies/{id}")]
+    [Route("/companies/{id}")]
     [SwaggerOperation(Tags = ["Companies"])]
     public IActionResult GetCompaniesById([FromRoute] int id)
     {
@@ -25,7 +25,7 @@ public class CompaniesController : ControllerBase
     }
 
     [HttpPost]
-    [Route("/Companies")]
+    [Route("/companies")]
     [SwaggerOperation(Tags = ["Companies"])]
     public IActionResult CreateCompanies([FromBody] string name)
     {
@@ -33,7 +33,7 @@ public class CompaniesController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("/Companies")]
+    [Route("/companies")]
     [SwaggerOperation(Tags = ["Companies"])]
     public IActionResult DeleteCompanies([FromBody] string name)
     {
@@ -41,7 +41,7 @@ public class CompaniesController : ControllerBase
     }
 
     [HttpPut]
-    [Route("/Companies/{id}")]
+    [Route("/companies/{id}")]
     [SwaggerOperation(Tags = ["Companies"])]
     public IActionResult UpdateCompanies([FromRoute] int id, [FromBody] string body)
     {
