@@ -22,6 +22,8 @@ namespace Game_Inventory.Database
 
         public virtual DbSet<Company> Companies { get; set; }
 
+        public virtual DbSet<Console> Consoles { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -44,6 +46,32 @@ namespace Game_Inventory.Database
                 .IsRequired()
                 .HasMaxLength(200)
                 .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Console>(entity =>
+            {
+
+                entity.HasKey(e => e.ID).HasName("Pk_Company");
+
+                entity.Property(e => e.Name)
+                .IsRequired()
+                .HasMaxLength(100)
+                .IsUnicode(false);
+
+                entity.Property(e => e.Description)
+                .IsRequired()
+                .HasMaxLength(200)
+                .IsUnicode(false);
+
+                entity.Property(e => e.Price)
+                .HasColumnType("decimal(6,2)")
+                .HasDefaultValue(0);
+
+                entity.HasOne<Company>(d => d.Company)
+                .WithMany(p => p.Consoles)
+                .HasForeignKey(d => d.CompanyID)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("Fk_Console_Company");
             });
         }
     }

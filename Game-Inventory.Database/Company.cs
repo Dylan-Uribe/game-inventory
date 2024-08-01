@@ -7,12 +7,14 @@ namespace Game_Inventory.Database
     {
         public int ID { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
-        public string CEO { get; set; }
+        public string CEO { get; set; } = string.Empty;
 
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         public bool State { get; set; }
+
+        public virtual ICollection<Console> Consoles { get; set; } = new List<Console>();
     }
 }
