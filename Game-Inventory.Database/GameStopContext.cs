@@ -51,7 +51,7 @@ namespace Game_Inventory.Database
             modelBuilder.Entity<Console>(entity =>
             {
 
-                entity.HasKey(e => e.ID).HasName("Pk_Company");
+                entity.HasKey(e => e.ID).HasName("Pk_Console");
 
                 entity.Property(e => e.Name)
                 .IsRequired()
