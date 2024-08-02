@@ -19,7 +19,7 @@ public class Console
 
     public bool State { get; set; }
 
-    public int CompanyID { get; set; }
+    public int CompanyId { get; set; }
 
     public required virtual Company Company { get; set; }
 }

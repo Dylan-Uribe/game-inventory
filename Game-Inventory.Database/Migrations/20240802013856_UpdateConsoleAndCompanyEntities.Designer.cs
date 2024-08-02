@@ -3,6 +3,7 @@ using Game_Inventory.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Game_Inventory.Database.Migrations
 {
     [DbContext(typeof(GameStopContext))]
-    partial class GameStopContextModelSnapshot : ModelSnapshot
+    [Migration("20240802013856_UpdateConsoleAndCompanyEntities")]
+    partial class UpdateConsoleAndCompanyEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,7 +67,7 @@ namespace Game_Inventory.Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CompanyId")
+                    b.Property<int>("CompanyID")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
@@ -90,7 +93,7 @@ namespace Game_Inventory.Database.Migrations
                     b.HasKey("Id")
                         .HasName("Pk_Console");
 
-                    b.HasIndex("CompanyId");
+                    b.HasIndex("CompanyID");
 
                     b.ToTable("Consoles");
                 });
@@ -99,7 +102,7 @@ namespace Game_Inventory.Database.Migrations
                 {
                     b.HasOne("Game_Inventory.Database.Company", "Company")
                         .WithMany("Consoles")
-                        .HasForeignKey("CompanyId")
+                        .HasForeignKey("CompanyID")
                         .IsRequired()
                         .HasConstraintName("Fk_Console_Company");
 

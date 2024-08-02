@@ -36,7 +36,7 @@ public class ConsoleEntityTypeConfiguration :IEntityTypeConfiguration<Console>
         builder
             .HasOne<Company>(d => d.Company)
             .WithMany(p => p.Consoles)
-            .HasForeignKey(d => d.CompanyID)
+            .HasForeignKey(d => d.CompanyId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("Fk_Console_Company");
     }
