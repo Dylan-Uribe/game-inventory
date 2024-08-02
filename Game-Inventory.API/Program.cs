@@ -12,7 +12,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<GameStopContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("GameStopDB"));
+    options
+    .UseSqlServer(builder.Configuration.GetConnectionString("GameStopDB"));
 });
 
 var app = builder.Build();
