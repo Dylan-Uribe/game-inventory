@@ -5,10 +5,10 @@ namespace Game_Inventory.API.Controllers.Games;
 
 
 [ApiController]
-public class GameController : ControllerBase
+public class GamesController : ControllerBase
 {
 
-    public GameController()
+    public GamesController()
     {
         
     }
@@ -52,7 +52,7 @@ public class GameController : ControllerBase
     [HttpDelete]
     [Route("/games")]
     [SwaggerOperation(Tags = ["Games"])]
-    public IActionResult GetGames([FromBody] int id)
+    public IActionResult DeleteGames([FromBody] int id)
     {
         throw new NotImplementedException();
     }
