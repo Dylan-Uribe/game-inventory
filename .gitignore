@@ -61,6 +61,7 @@ BenchmarkDotNet.Artifacts/
 project.lock.json
 project.fragment.lock.json
 artifacts/
+Game-Inventory.API/appsettings.Development.json
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt

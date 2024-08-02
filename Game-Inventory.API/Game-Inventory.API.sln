@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game-Inventory.API", "Game-Inventory.API.csproj", "{6DD0158B-3EF8-4FF2-9405-95ECF5498CE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game-Inventory.API", "Game-Inventory.API.csproj", "{6DD0158B-3EF8-4FF2-9405-95ECF5498CE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game-Inventory.Database", "..\Game-Inventory.Database\Game-Inventory.Database.csproj", "{B408C10F-E393-427D-84AF-624C5C24648A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{6DD0158B-3EF8-4FF2-9405-95ECF5498CE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DD0158B-3EF8-4FF2-9405-95ECF5498CE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DD0158B-3EF8-4FF2-9405-95ECF5498CE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B408C10F-E393-427D-84AF-624C5C24648A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B408C10F-E393-427D-84AF-624C5C24648A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B408C10F-E393-427D-84AF-624C5C24648A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B408C10F-E393-427D-84AF-624C5C24648A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
