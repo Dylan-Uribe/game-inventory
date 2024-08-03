@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,4 +23,6 @@ public class Console
     public int CompanyId { get; set; }
 
     public required virtual Company Company { get; set; }
+
+    public virtual ICollection<GameConsole> GameConsoles { get; } = new List<GameConsole>();
 }

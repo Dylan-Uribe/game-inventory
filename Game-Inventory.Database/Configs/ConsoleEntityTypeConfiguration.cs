@@ -39,5 +39,6 @@ public class ConsoleEntityTypeConfiguration :IEntityTypeConfiguration<Console>
             .HasForeignKey(d => d.CompanyId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("Fk_Console_Company");
+
     }
 }
