@@ -4,6 +4,7 @@ using Game_Inventory.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Game_Inventory.Database.Migrations
 {
     [DbContext(typeof(GameStopContext))]
-    partial class GameStopContextModelSnapshot : ModelSnapshot
+    [Migration("20240803004741_fixGenrePropertyinGameEntity")]
+    partial class fixGenrePropertyinGameEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,7 +157,7 @@ namespace Game_Inventory.Database.Migrations
 
                     b.HasIndex("ConsoleId");
 
-                    b.ToTable("GameConsoles");
+                    b.ToTable("GamesConsoles");
                 });
 
             modelBuilder.Entity("Game_Inventory.Database.Console", b =>

@@ -25,6 +25,10 @@ public class GameStopContext: DbContext
 
     public virtual DbSet<Console> Consoles { get; set; }
 
+    public virtual DbSet<Game> Games { get; set; }
+
+    public virtual DbSet<GameConsole> GameConsoles { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -34,5 +38,11 @@ public class GameStopContext: DbContext
 
         new ConsoleEntityTypeConfiguration()
             .Configure(modelBuilder.Entity<Console>());
+
+        new GameEntityTypeConfiguration()
+            .Configure(modelBuilder.Entity<Game>());
+
+        new GameConsoleEntityTypeConfiguration()
+            .Configure(modelBuilder.Entity<GameConsole>());
     }
 }
