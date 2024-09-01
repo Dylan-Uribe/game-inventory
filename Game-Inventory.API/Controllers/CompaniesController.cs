@@ -23,11 +23,19 @@ public class CompaniesController : ControllerBase
     [SwaggerOperation(Tags = ["Companies"])]
     public async Task<IActionResult> GetCompanies()
     {
-        var companies = await _context.
-            Companies.
-            ToListAsync();
 
-        return Ok(companies);
+        try
+        {
+            var companies = await _context
+                .Companies
+                .ToListAsync();
+
+            return Ok(companies);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error ocurred: {ex.Message}");
+        }
     }
 
     [HttpGet]
@@ -35,13 +43,27 @@ public class CompaniesController : ControllerBase
     [SwaggerOperation(Tags = ["Companies"])]
     public  async Task<IActionResult> GetCompaniesById([FromRoute] int id)
     {
-        var company = await _context.
-            Companies.
-            FindAsync(id);
+        var company = await _context
+            .Companies
+            .FindAsync(id);  
 
-        return company is null
+        if(company is null)
+        {
+            var problemDetails = new ProblemDetails()
+            {
+                Status = 404,
+                Title = "Company not found",
+                Detail = $"Company with Id '{id}' was not found."
+            };
+
+            return NotFound(problemDetails);
+        }
+
+        return Ok(company);
+
+        /*return company is null
             ? NotFound() 
-            : Ok(company);
+            : Ok(company);*/
     }
 
     [HttpPost]
@@ -52,7 +74,14 @@ public class CompaniesController : ControllerBase
         
         if(company is null)
         {
-            return BadRequest("Company can not be null!!!");
+            var problemDetails = new ProblemDetails()
+            {
+                Status = 400,
+                Title = "Invalid input",
+                Detail = "The request Body is missing required fields or " +
+                         "the provided data is incorrectly formatted. "
+            };
+            return BadRequest(problemDetails);
         }
 
         try
@@ -74,11 +103,36 @@ public class CompaniesController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("/companies")]
+    [Route("/companies/{id}")]
     [SwaggerOperation(Tags = ["Companies"])]
-    public IActionResult DeleteCompanies([FromBody] string name)
+    public async Task<IActionResult> DeleteCompanies([FromRoute] int id)
     {
-        throw new NotImplementedException();
+        var company = await _context
+            .Companies
+            .FindAsync(id);
+
+        if(company is null)
+        {
+            var problemDdetails = new ProblemDetails
+            {
+                Status = 404,
+                Title = "Company not found",
+                Detail = $"Company with id '{id}' was not found.",
+            };
+            return NotFound(problemDdetails);
+        }
+
+        try
+        {
+            _context.Companies.Remove(company);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
+        catch(Exception ex)
+        {
+            return StatusCode(500, $"An error ocurred: {ex.Message}");
+        }
+
     }
 
     [HttpPut]
@@ -86,11 +140,28 @@ public class CompaniesController : ControllerBase
     [SwaggerOperation(Tags = ["Companies"])]
     public async Task<IActionResult> UpdateCompanies([FromRoute] int id, [FromBody] Company company)
     {
+
+        if(company is null)
+        {
+            var problemDetails = new ProblemDetails
+            {
+                Status = 400,
+                Title = "Invalid Input",
+                Detail = "Invalid input: The request body is missing required fields or " +
+                         "the provided data is incorrectly formatted.",
+            };
+            return BadRequest(problemDetails);
+        }
+
         if(id != company.Id)
         {
-            return BadRequest(
-                "The Id in the URL does not match the id in the request body"
-            );
+            var problemDetails = new ProblemDetails
+            {
+                Status = 400,
+                Title = "Id Mismatch",
+                Detail = "The Id in the URL does not match the id in the request body.",
+            };
+            return BadRequest(problemDetails);
         }
 
         try
@@ -99,7 +170,15 @@ public class CompaniesController : ControllerBase
             var companyToUpdate = await _context.Companies.FindAsync(id);
 
             if(companyToUpdate is null)
-                return NotFound();
+            {
+                var problemDdetails = new ProblemDetails
+                {
+                    Status = 404,
+                    Title = "Company not found",
+                    Detail = $"Company with id '{id}' was not found.",
+                };
+                return NotFound(problemDdetails);
+            }
 
             companyToUpdate.Name = company.Name;
             companyToUpdate.CEO = company.CEO;
