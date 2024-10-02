@@ -196,4 +196,20 @@ public class CompaniesController : ControllerBase
 
         return NoContent();
     }
+
+    [HttpGet]
+    [Route("/companies")]
+    [SwaggerOperation(Tags = ["Companies"])]
+    public async Task<IActionResult> GetCompanies2()
+    {
+      throw new NotImplementedException();
+    }
+
+    [HttpPost]
+    [Route("/companies")]
+    [SwaggerOperation(Tags = ["companies"])]
+    public IActionResult CreateGame([FromBody] string name)
+    {
+        throw new NotImplementedException();
+    }
 }
