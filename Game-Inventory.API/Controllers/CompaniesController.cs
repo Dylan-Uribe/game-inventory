@@ -23,28 +23,4 @@ public class CompaniesController : ControllerBase
     {
         throw new NotImplementedException();
     }
-
-    [HttpPost]
-    [Route("/companies")]
-    [SwaggerOperation(Tags = ["Companies"])]
-    public IActionResult CreateCompanies([FromBody] string name)
-    {
-        throw new NotImplementedException();
-    }
-
-    [HttpDelete]
-    [Route("/companies")]
-    [SwaggerOperation(Tags = ["Companies"])]
-    public IActionResult DeleteCompanies([FromBody] string name)
-    {
-        throw new NotImplementedException();
-    }
-
-    [HttpPut]
-    [Route("/companies/{id}")]
-    [SwaggerOperation(Tags = ["Companies"])]
-    public IActionResult UpdateCompanies([FromRoute] int id, [FromBody] string body)
-    {
-        throw new NotImplementedException();
-    }
 }
